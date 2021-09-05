@@ -16,16 +16,15 @@ const uploadFile = async (req, res = response) => {
   });
 
   const content = await zip.generateAsync({ type: 'nodebuffer' });
+  // const nameZip = 'fecha del documento';
   fs.writeFileSync('files.zip', content);
 
   files.map((file) => {
     fs.unlinkSync(file.originalname);
   });
 
-  return res.status(200).json({
-    success: true,
-    message: 'Upload File'
-  });
+  res.download('./files.zip');
+  // fs.unlinkSync('Borrar el zip');
 };
 
 module.exports = {
