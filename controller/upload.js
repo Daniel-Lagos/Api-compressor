@@ -1,6 +1,7 @@
 const { response } = require('express');
 const fs = require('fs');
 const JSZip = require('jszip');
+const path = require('path');
 
 const uploadFile = async (req, res = response) => {
   const zip = new JSZip();
@@ -22,7 +23,7 @@ const uploadFile = async (req, res = response) => {
     fs.unlinkSync(file.originalname);
   });
 
-  res.download('./' + zipName + '.zip', function (err) {
+  res.sendFile(path.resolve(`./${zipName}.zip`), function (err) {
     if (err) {
       console.log(err);
     }

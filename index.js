@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 
+// export const urlBase = __dirname;
+
 const app = express();
 
 app.use(cors());
